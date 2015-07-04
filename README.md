@@ -1,1 +1,1 @@
-# docker-meteor-demo
+# docker-meteor
