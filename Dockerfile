@@ -1,12 +1,23 @@
+# To run:
+# docker build -t demo .
+# docker run -t demo
+
 # Base image for meteor.
-FROM richburdon/meteor 
+# FROM richburdon/meteor 
+FROM jadsonlourenco/docker-meteor-base
 
 # Build meteor app bundle (i.e., NodeJS app); then remove the source.
-COPY app/ /home/app/src/
-WORKDIR /home/app/src/
+RUN mkdir /home/app
+COPY app/ /home/src/demo
+WORKDIR /home/src/demo
 RUN meteor build .
-RUN tar -xzf meteor.tar.gz -C ../ --strip-components 1
-RUN rm -r /home/app/src/
+RUN ls -las
+RUN tar -xzf demo.tar.gz -C /home/app --strip-components 1
+RUN rm -r /home/src/demo
+
+# Install NPM modules.
+WORKDIR /home/app/programs/server
+RUN npm install
 
 # Open container port.
 EXPOSE 3000
