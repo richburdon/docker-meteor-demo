@@ -1,7 +1,3 @@
-# To run:
-# docker build -t demo .
-# docker run -t demo
-
 # Base image for meteor.
 # FROM richburdon/meteor 
 FROM jadsonlourenco/docker-meteor-base
