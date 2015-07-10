@@ -6,3 +6,6 @@ demo:
     PORT: "3000"
     ROOT_URL: "http://localhost:3000"
     MONGO_URL: "mongodb://user:pass@mongo.server:port/database"
+    REDIS_URL: "redis://user:pass@redis.server:port"
+    REDIS_CONFIGURE_KEYSPACE_NOTIFICATIONS: "1"
+
