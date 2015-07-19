@@ -1,13 +1,16 @@
-# Base image for meteor.
-# FROM richburdon/meteor 
-FROM jadsonlourenco/docker-meteor-base
+FROM ubuntu:trusty
 
-# Build meteor app bundle (i.e., NodeJS app); then remove the source.
+# Install meteor.
+RUN apt-get update && apt-get install -y curl wget unzip
+RUN curl -sL https://deb.nodesource.com/setup | bash -
+RUN apt-get install -y nodejs
+RUN curl https://install.meteor.com/ | sh
+
+# Install app.
 RUN mkdir /home/app
 COPY app/ /home/src/demo
 WORKDIR /home/src/demo
-RUN meteor build .
-RUN ls -las
+RUN meteor build . --architecture os.linux.x86_64
 RUN tar -xzf demo.tar.gz -C /home/app --strip-components 1
 RUN rm -r /home/src/demo
 
